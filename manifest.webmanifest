@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#fff3f8",
   "theme_color": "#ec4899",
-  "description": "Final Tax App with startup guidance, low-income mode, autumn warning, progress bar, exports, and multi-year records.",
+  "description": "Tax App with clearer month separation, swipe cards, and focused current month view.",
   "icons": [
     {
       "src": "icon-192.svg",
