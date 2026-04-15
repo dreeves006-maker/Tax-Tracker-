@@ -12,8 +12,8 @@
     :root{
       --bg1:#fff3f8; --bg2:#f7f0ff; --bg3:#fff8ef;
       --text:#342245; --muted:#7f6d92; --line:rgba(120,81,160,.14);
-      --purple:#8b5cf6; --pink:#ec4899; --orange:#fb923c; --green:#10b981; --red:#ef4444;
-      --card:rgba(255,255,255,.9); --shadow:0 18px 46px rgba(114,72,156,.14); --radius:26px;
+      --purple:#8b5cf6; --pink:#ec4899; --orange:#fb923c; --green:#10b981; --red:#ef4444; --blue:#60a5fa;
+      --card:rgba(255,255,255,.92); --shadow:0 18px 46px rgba(114,72,156,.14); --radius:26px;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
@@ -26,7 +26,7 @@
         radial-gradient(circle at 100% 100%, rgba(251,146,60,.12), transparent 22%),
         linear-gradient(180deg,var(--bg1),var(--bg2) 52%,var(--bg3));
     }
-    .app{max-width:1200px;margin:0 auto;padding:max(14px,env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom))}
+    .app{max-width:1220px;margin:0 auto;padding:max(14px,env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom))}
     .hero{
       margin-top:10px;padding:24px;border-radius:34px;color:#fff;position:relative;overflow:hidden;
       background:linear-gradient(135deg,#7c3aed 0%, #ec4899 52%, #fb923c 100%);
@@ -37,18 +37,16 @@
     .hero:after{width:130px;height:130px;left:-25px;bottom:-35px}
     .hero>*{position:relative;z-index:1}
     .tag{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.16);font-size:.82rem;font-weight:800}
-    h1{margin:14px 0 8px;font-size:clamp(2rem,5vw,3.2rem);line-height:1.02;letter-spacing:-.03em}
-    .hero p{margin:8px 0 0;max-width:760px;line-height:1.55;color:rgba(255,255,255,.94)}
+    h1{margin:14px 0 8px;font-size:clamp(2rem,5vw,3.1rem);line-height:1.02;letter-spacing:-.03em}
+    .hero p{margin:8px 0 0;max-width:820px;line-height:1.55;color:rgba(255,255,255,.94)}
     .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-    button, select{
-      appearance:none;border:none;border-radius:16px;padding:12px 15px;font:inherit
-    }
+    button, select{appearance:none;border:none;border-radius:16px;padding:12px 15px;font:inherit}
     button{cursor:pointer;font-weight:800}
     .btn-main{background:#fff;color:#7c3aed}
     .btn-soft{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.16)}
     .tip{display:none;margin-top:12px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
     .show{display:block}
-    .layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:16px}
+    .layout{display:grid;grid-template-columns:1.08fr .92fr;gap:16px;margin-top:16px}
     @media (max-width:980px){.layout{grid-template-columns:1fr}}
     .stack{display:grid;gap:16px}
     .card{
@@ -58,8 +56,8 @@
     .pill{display:inline-flex;padding:7px 10px;border-radius:999px;font-size:.8rem;font-weight:800;color:#7c3aed;background:linear-gradient(90deg,rgba(139,92,246,.12),rgba(236,72,153,.12));margin-bottom:10px}
     h2{margin:0 0 6px;font-size:1.15rem;letter-spacing:-.02em}
     .muted{color:var(--muted)}
-    .inputs,.yearbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
-    @media (max-width:520px){.inputs,.yearbar{grid-template-columns:1fr}}
+    .inputs,.yearbar,.helper-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+    @media (max-width:520px){.inputs,.yearbar,.helper-grid{grid-template-columns:1fr}}
     label{display:block;margin:10px 0 6px;font-size:.86rem;font-weight:800}
     input, .card select{
       width:100%;padding:12px 13px;border-radius:14px;border:1px solid var(--line);background:#fff;
@@ -70,19 +68,12 @@
       padding:12px 14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.15);border-radius:18px
     }
     .year-chip strong{font-size:1.05rem}
-    .warning{
-      margin-top:14px;padding:14px 16px;border-radius:20px;
-      background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
-      border:1px solid rgba(255,255,255,.18)
-    }
-    .warning-title{font-weight:900;font-size:1rem;margin-bottom:6px}
-    .warning p{margin:0;color:rgba(255,255,255,.94);line-height:1.45}
     .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
     @media (max-width:520px){.stats{grid-template-columns:1fr}}
     .stat{padding:14px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.8))}
     .label{font-size:.82rem;color:var(--muted);margin-bottom:8px}
-    .value{font-size:1.45rem;font-weight:900;line-height:1.04;letter-spacing:-.03em}
-    .pink{color:var(--pink)} .purple{color:var(--purple)} .green{color:var(--green)} .orange{color:var(--orange)} .red{color:var(--red)}
+    .value{font-size:1.3rem;font-weight:900;line-height:1.04;letter-spacing:-.03em}
+    .pink{color:var(--pink)} .purple{color:var(--purple)} .green{color:var(--green)} .orange{color:var(--orange)} .red{color:var(--red)} .blue{color:var(--blue)}
     .months{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
     @media (max-width:980px){.months{grid-template-columns:repeat(2,minmax(0,1fr));}}
     @media (max-width:680px){.months{grid-template-columns:1fr;}}
@@ -99,7 +90,7 @@
     .month-body{padding:0 14px 14px}
     .month.collapsed .month-body{display:none}
     .month-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 14px 14px}
-    @media (max-width:480px){.month-summary,.totals{grid-template-columns:1fr}}
+    @media (max-width:480px){.month-summary,.totals,.warning-grid{grid-template-columns:1fr}}
     .mini-box,.total-box{padding:10px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.76)}
     .mini-k,.k{font-size:.72rem;color:var(--muted)}
     .mini-v,.v{font-size:.95rem;font-weight:800;margin-top:4px}
@@ -113,6 +104,16 @@
     .toggle::after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:.2s ease}
     .toggle.on{background:linear-gradient(135deg,#8b5cf6,#ec4899)}
     .toggle.on::after{left:30px}
+    .warning{
+      margin-top:12px;padding:14px;border-radius:20px;
+      border:1px solid rgba(251,146,60,.22);
+      background:linear-gradient(180deg, rgba(255,247,237,.96), rgba(255,239,246,.92));
+    }
+    .warning-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+    .progress{margin-top:12px}
+    .track{width:100%;height:14px;border-radius:999px;background:#f4e8ff;overflow:hidden}
+    .fill{height:100%;width:0;background:linear-gradient(90deg,#8b5cf6,#ec4899,#fb923c);border-radius:999px}
+    .helper{padding:14px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.82))}
     .note{margin-top:12px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.78);border:1px solid var(--line);color:var(--muted);font-size:.9rem;line-height:1.48}
     .footer{text-align:center;color:var(--muted);font-size:.82rem;margin:16px 0 0;padding:8px}
   </style>
@@ -120,9 +121,9 @@
 <body>
   <div class="app">
     <section class="hero">
-      <div class="tag">💖 Tax App • Ireland • Version 3 (2025 + Tax Warning)</div>
+      <div class="tag">💖 Tax App • Ireland • v5</div>
       <h1>Money in. Costs out. Tax sorted.</h1>
-      <p>Now starts from <strong>2025</strong> and includes a clear warning for the first big tax payment year.</p>
+      <p>This version combines everything: startup guidance, low-income mode, year-by-year tracking from 2025, exports, savings progress, and the autumn double-payment warning.</p>
 
       <div class="yearbar">
         <div class="year-chip">
@@ -134,13 +135,8 @@
         </div>
         <div>
           <label for="yearSelect" style="margin-top:0;color:#fff">Choose year</label>
-          <select id="yearSelect" class="hero-select"></select>
+          <select id="yearSelect"></select>
         </div>
-      </div>
-
-      <div class="warning">
-        <div class="warning-title">First big payment warning</div>
-        <p id="doublePaymentText">If she started in 2025, the first major payment usually lands in 2026: balance of 2025 tax plus preliminary tax for 2026.</p>
       </div>
 
       <div class="actions">
@@ -159,7 +155,7 @@
         <section class="card">
           <div class="pill">📅 Monthly tracker</div>
           <h2 id="trackerHeading">Portrait month cards • 2025</h2>
-          <div class="muted">Each year is saved separately. 2025 is now the starting year.</div>
+          <div class="muted">Starts from 2025. Each year is stored separately and can be exported at year-end.</div>
 
           <div class="switch-line">
             <div>
@@ -195,8 +191,21 @@
               <input id="savedTax" type="number" min="0" step="0.01" value="0" />
             </div>
             <div>
-              <label for="setAsidePct">Set-aside target (%)</label>
+              <label for="setAsidePct">Manual set-aside target (%)</label>
               <input id="setAsidePct" type="number" min="0" max="100" step="1" value="35" />
+            </div>
+          </div>
+
+          <div class="helper-grid">
+            <div class="helper">
+              <div class="label">Smart mode</div>
+              <div class="value blue" id="smartMode">Startup mode</div>
+              <div class="muted" id="smartModeText">Built for a first year from 2025.</div>
+            </div>
+            <div class="helper">
+              <div class="label">Suggested savings rate</div>
+              <div class="value green" id="smartSaveRate">25%</div>
+              <div class="muted" id="smartSaveText">A gentler guide for a lower-income startup year.</div>
             </div>
           </div>
 
@@ -211,19 +220,48 @@
             <div class="stat"><div class="label">Estimated total tax</div><div class="value pink" id="totalTax">€0</div></div>
             <div class="stat"><div class="label">Suggested set-aside</div><div class="value green" id="suggestedSetAside">€0</div></div>
             <div class="stat"><div class="label">Gap still to save</div><div class="value red" id="gapToSave">€0</div></div>
-            <div class="stat"><div class="label">Likely first big payment</div><div class="value orange" id="firstBigPayment">€0</div></div>
-            <div class="stat"><div class="label">Payment timing</div><div class="value pink" id="paymentTiming">2026</div></div>
           </div>
-          <div class="note">For 2025 starters, the app now highlights that 2026 can bring a double hit: the 2025 balance plus preliminary 2026 tax.</div>
+
+          <div class="progress">
+            <div class="label">Readiness for the estimated tax bill</div>
+            <div class="track"><div class="fill" id="progressFill"></div></div>
+            <div class="muted" style="margin-top:8px" id="progressText">0% ready</div>
+          </div>
+
+          <div class="warning">
+            <div class="pill" style="margin-bottom:0">⚠️ Autumn payment warning</div>
+            <h2 id="warningHeading" style="margin-top:10px">Likely payment point for 2025 income</h2>
+            <div class="muted">For a first-year self-employed person, the real cash shock often arrives in the following year.</div>
+            <div class="warning-grid">
+              <div class="total-box">
+                <div class="k">Balance for selected year</div>
+                <div class="v" id="balanceForYear">€0</div>
+              </div>
+              <div class="total-box">
+                <div class="k">Safe preliminary tax for next year</div>
+                <div class="v" id="prelimNextYear">€0</div>
+              </div>
+              <div class="total-box">
+                <div class="k">Combined autumn budget</div>
+                <div class="v" id="combinedAutumn">€0</div>
+              </div>
+              <div class="total-box">
+                <div class="k">Likely due date</div>
+                <div class="v" id="likelyDueDate">31 Oct 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note">The app uses a practical safe rule for preliminary tax in the next year: match this year’s tax unless you have a better forecast.</div>
         </section>
       </div>
     </div>
 
-    <div class="footer">Tax App • Multi-year version with first-payment warning</div>
+    <div class="footer">Tax App • v5 • Startup + low-income + multi-year + exports</div>
   </div>
 
 <script>
-const STORAGE_KEY = 'tax-app-multi-year-v3';
+const STORAGE_KEY = 'tax-app-final-v5';
 const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const START_YEAR = 2025;
 
@@ -259,15 +297,11 @@ function blankYear(){
 function loadStore(){
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw){
-      return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
-    }
+    if(!raw) return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
     const parsed = JSON.parse(raw);
-    if(!parsed.years || typeof parsed.years !== 'object'){
-      return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
-    }
+    if(!parsed.years || typeof parsed.years !== 'object') return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
     if(!parsed.years[String(START_YEAR)]) parsed.years[String(START_YEAR)] = blankYear();
-    if(!parsed.currentYear) parsed.currentYear = START_YEAR;
+    if(!parsed.currentYear || Number(parsed.currentYear) < START_YEAR) parsed.currentYear = START_YEAR;
     return parsed;
   } catch(e){
     return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
@@ -282,13 +316,10 @@ function saveStore(){
   store.currentYear = activeYear;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
 }
-
 let deferredPrompt = null;
 const euro = n => new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n||0));
 
-function expenseTotal(month){
-  return month.expenses.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
-}
+function expenseTotal(month){ return month.expenses.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0); }
 function monthStatus(index){
   const yr = Number(activeYear);
   const now = new Date();
@@ -300,9 +331,7 @@ function monthStatus(index){
   if(index === currentMonth) return 'current';
   return 'future';
 }
-function monthProfit(month){
-  return (parseFloat(month.income) || 0) - expenseTotal(month);
-}
+function monthProfit(month){ return (parseFloat(month.income) || 0) - expenseTotal(month); }
 function isMonthComplete(month, index){
   if(monthStatus(index) !== 'past') return false;
   return (parseFloat(month.income) || 0) > 0 || expenseTotal(month) > 0;
@@ -315,41 +344,89 @@ function escapeHtml(text){
     .replaceAll('"','&quot;')
     .replaceAll("'","&#39;");
 }
-
-function computeSummaryForYear(yearKey){
-  const s = store.years[yearKey] || blankYear();
-  const income = s.months.reduce((sum, m) => sum + (parseFloat(m.income) || 0), 0);
-  const expenses = s.months.reduce((sum, m) => sum + expenseTotal(m), 0);
+function calcIncomeTax(taxableIncome, extraCredits){
+  if(taxableIncome <= 0) return 0;
+  const standardPart = Math.min(taxableIncome, STANDARD_RATE_BAND) * 0.20;
+  const higherPart = Math.max(taxableIncome - STANDARD_RATE_BAND, 0) * 0.40;
+  const grossTax = standardPart + higherPart;
+  const earnedCredit = Math.min(EARNED_INCOME_CREDIT_MAX, taxableIncome);
+  const totalCredits = SINGLE_PERSON_CREDIT + earnedCredit + (parseFloat(extraCredits) || 0);
+  return Math.max(grossTax - totalCredits, 0);
+}
+function calcUSC(income, nonPayeIncome){
+  income = Math.max(income, 0); nonPayeIncome = Math.max(nonPayeIncome, 0);
+  if(income <= USC_EXEMPTION_LIMIT) return 0;
+  let remaining = income, usc = 0;
+  for(const band of USC_BANDS){
+    if(remaining <= 0) break;
+    const taxable = Math.min(remaining, band.amount);
+    usc += taxable * band.rate;
+    remaining -= taxable;
+  }
+  if(nonPayeIncome > USC_SURCHARGE_THRESHOLD) usc += (nonPayeIncome - USC_SURCHARGE_THRESHOLD) * 0.03;
+  return usc;
+}
+function calcPRSI(reckonableIncome){
+  const base = Math.max(reckonableIncome, 0) * PRSI_RATE;
+  if(reckonableIncome <= 0) return 0;
+  return Math.max(base, PRSI_MIN);
+}
+function computeSummaryForYearData(yearData){
+  const income = yearData.months.reduce((sum, m) => sum + (parseFloat(m.income) || 0), 0);
+  const expenses = yearData.months.reduce((sum, m) => sum + expenseTotal(m), 0);
   const profit = income - expenses;
-  const capitalAllowances = parseFloat(s.capitalAllowances) || 0;
-  const otherIncome = parseFloat(s.otherIncome) || 0;
-  const savedTax = parseFloat(s.savedTax) || 0;
-  const setAsidePct = Math.max(0, Math.min(100, parseFloat(s.setAsidePct) || 0));
+  const capitalAllowances = parseFloat(yearData.capitalAllowances) || 0;
+  const otherIncome = parseFloat(yearData.otherIncome) || 0;
+  const savedTax = parseFloat(yearData.savedTax) || 0;
+  const manualSetAsidePct = Math.max(0, Math.min(100, parseFloat(yearData.setAsidePct) || 0));
   const taxableProfit = Math.max(profit - capitalAllowances, 0);
   const assessableIncome = taxableProfit + otherIncome;
-
-  const incomeTax = calcIncomeTax(assessableIncome, parseFloat(s.extraCredits) || 0);
+  const incomeTax = calcIncomeTax(assessableIncome, yearData.extraCredits);
   const usc = calcUSC(assessableIncome, assessableIncome);
   const prsi = calcPRSI(assessableIncome);
   const totalTax = incomeTax + usc + prsi;
-  const suggestedSetAside = income * (setAsidePct / 100);
+
+  let smartMode = 'Standard mode';
+  let smartSaveRate = 35;
+  let smartText = 'Standard savings guide for a typical self-employed year.';
+  if(Number(activeYear) === START_YEAR){
+    smartMode = 'Startup mode';
+    smartSaveRate = 30;
+    smartText = 'First year of trading. Save steadily so the first autumn bill is not a shock.';
+  }
+  if(assessableIncome > 0 && assessableIncome < 16000){
+    smartMode = 'Low income mode';
+    smartSaveRate = 25;
+    smartText = 'Lighter tax pressure at this level, but still save something every month.';
+  }
+  if(Number(activeYear) === START_YEAR && assessableIncome > 0 && assessableIncome < 16000){
+    smartMode = 'Startup + low income mode';
+    smartSaveRate = 25;
+    smartText = 'A gentler savings guide for a lower-income startup year.';
+  }
+
+  const suggestedSetAside = income * (smartSaveRate / 100);
+  const manualSetAside = income * (manualSetAsidePct / 100);
   const gapToSave = Math.max(totalTax - savedTax, 0);
+  const readiness = totalTax > 0 ? Math.min((savedTax / totalTax) * 100, 100) : 0;
 
   return {
-    income, expenses, profit, capitalAllowances, otherIncome, savedTax, setAsidePct,
-    taxableProfit, assessableIncome, incomeTax, usc, prsi, totalTax, suggestedSetAside, gapToSave
+    income, expenses, profit, capitalAllowances, otherIncome, savedTax, manualSetAsidePct,
+    taxableProfit, assessableIncome, incomeTax, usc, prsi, totalTax, suggestedSetAside, manualSetAside,
+    gapToSave, readiness, smartMode, smartSaveRate, smartText
   };
 }
+function computeSummary(){ return computeSummaryForYearData(state()); }
 
 function refreshYearSelect(){
   const select = document.getElementById('yearSelect');
-  const years = Object.keys(store.years).sort((a,b)=>Number(a)-Number(b));
-  select.innerHTML = years.map(y => `<option value="${y}" ${y===activeYear ? 'selected' : ''}>${y}</option>`).join('');
+  const years = Object.keys(store.years).map(Number).filter(y => y >= START_YEAR).sort((a,b)=>a-b);
+  if(!years.includes(START_YEAR)) years.unshift(START_YEAR);
+  select.innerHTML = years.map(y => `<option value="${y}" ${String(y)===activeYear ? 'selected' : ''}>${y}</option>`).join('');
   document.getElementById('heroYear').textContent = activeYear;
   document.getElementById('trackerHeading').textContent = `Portrait month cards • ${activeYear}`;
   document.getElementById('taxHeading').textContent = `What to set aside • ${activeYear}`;
 }
-
 function renderMonths(){
   const s = state();
   const wrap = document.getElementById('months');
@@ -361,7 +438,6 @@ function renderMonths(){
     const summaryIncome = parseFloat(month.income) || 0;
     const summaryExpenses = expenseTotal(month);
     const summaryProfit = monthProfit(month);
-
     const card = document.createElement('div');
     card.className = `month ${status} ${open ? '' : 'collapsed'}`;
     card.innerHTML = `
@@ -403,43 +479,9 @@ function renderMonths(){
     wrap.appendChild(card);
   });
 }
-
-function calcIncomeTax(taxableIncome, extraCredits){
-  if(taxableIncome <= 0) return 0;
-  const standardPart = Math.min(taxableIncome, STANDARD_RATE_BAND) * 0.20;
-  const higherPart = Math.max(taxableIncome - STANDARD_RATE_BAND, 0) * 0.40;
-  const grossTax = standardPart + higherPart;
-  const earnedCredit = Math.min(EARNED_INCOME_CREDIT_MAX, taxableIncome);
-  const totalCredits = SINGLE_PERSON_CREDIT + earnedCredit + (extraCredits || 0);
-  return Math.max(grossTax - totalCredits, 0);
-}
-function calcUSC(income, nonPayeIncome){
-  income = Math.max(income, 0);
-  nonPayeIncome = Math.max(nonPayeIncome, 0);
-  if(income <= USC_EXEMPTION_LIMIT) return 0;
-  let remaining = income;
-  let usc = 0;
-  for(const band of USC_BANDS){
-    if(remaining <= 0) break;
-    const taxable = Math.min(remaining, band.amount);
-    usc += taxable * band.rate;
-    remaining -= taxable;
-  }
-  if(nonPayeIncome > USC_SURCHARGE_THRESHOLD){
-    usc += (nonPayeIncome - USC_SURCHARGE_THRESHOLD) * 0.03;
-  }
-  return usc;
-}
-function calcPRSI(reckonableIncome){
-  const base = Math.max(reckonableIncome, 0) * PRSI_RATE;
-  if(reckonableIncome <= 0) return 0;
-  return Math.max(base, PRSI_MIN);
-}
-
 function renderSummary(){
   const s = state();
-  const x = computeSummaryForYear(activeYear);
-
+  const x = computeSummary();
   document.getElementById('incomeTotal').textContent = euro(x.income);
   document.getElementById('expenseTotal').textContent = euro(x.expenses);
   document.getElementById('profitTotal').textContent = euro(x.profit);
@@ -450,45 +492,30 @@ function renderSummary(){
   document.getElementById('totalTax').textContent = euro(x.totalTax);
   document.getElementById('suggestedSetAside').textContent = euro(x.suggestedSetAside);
   document.getElementById('gapToSave').textContent = euro(x.gapToSave);
+  document.getElementById('smartMode').textContent = x.smartMode;
+  document.getElementById('smartSaveRate').textContent = `${x.smartSaveRate}%`;
+  document.getElementById('smartSaveText').textContent = x.smartText;
+  document.getElementById('progressFill').style.width = `${x.readiness}%`;
+  document.getElementById('progressText').textContent = `${Math.round(x.readiness)}% ready for the estimated tax bill`;
 
   ['capitalAllowances','otherIncome','extraCredits','savedTax','setAsidePct'].forEach(id => {
     document.getElementById(id).value = s[id];
   });
-
   document.getElementById('collapseToggle').classList.toggle('on', s.autoCollapsePast);
 
-  const yearNum = Number(activeYear);
-  let warning = 'This year looks like a normal running tax year.';
-  let firstBigPayment = x.totalTax;
-  let paymentTiming = String(yearNum + 1);
-
-  if(yearNum === 2025){
-    const nextYearKey = '2026';
-    const nextYearSummary = store.years[nextYearKey] ? computeSummaryForYear(nextYearKey) : null;
-    const preliminary2026 = nextYearSummary ? nextYearSummary.totalTax : x.totalTax;
-    firstBigPayment = x.totalTax + preliminary2026;
-    warning = `For a 2025 starter, the first big payment usually lands in 2026: about ${euro(x.totalTax)} for 2025 plus about ${euro(preliminary2026)} preliminary tax for 2026.`;
-    paymentTiming = 'Oct/Nov 2026';
-  } else if(yearNum === 2026){
-    const prior2025 = store.years['2025'] ? computeSummaryForYear('2025') : null;
-    const priorAmt = prior2025 ? prior2025.totalTax : 0;
-    firstBigPayment = priorAmt + x.totalTax;
-    warning = `2026 can feel like a double hit if 2025 was the first self-employed year: about ${euro(priorAmt)} for the 2025 balance plus about ${euro(x.totalTax)} preliminary tax for 2026.`;
-    paymentTiming = 'Oct/Nov 2026';
-  }
-
-  document.getElementById('doublePaymentText').textContent = warning;
-  document.getElementById('firstBigPayment').textContent = euro(firstBigPayment);
-  document.getElementById('paymentTiming').textContent = paymentTiming;
+  const safePrelim = x.totalTax;
+  document.getElementById('balanceForYear').textContent = euro(x.totalTax);
+  document.getElementById('prelimNextYear').textContent = euro(safePrelim);
+  document.getElementById('combinedAutumn').textContent = euro(x.totalTax + safePrelim);
+  document.getElementById('likelyDueDate').textContent = `31 Oct ${Number(activeYear)+1}`;
+  document.getElementById('warningHeading').textContent = `Likely payment point for ${activeYear} income`;
 }
-
 function rerender(){
   refreshYearSelect();
   renderMonths();
   renderSummary();
   saveStore();
 }
-
 function csvEscape(value){
   const str = String(value ?? '');
   return '"' + str.replaceAll('"', '""') + '"';
@@ -505,26 +532,20 @@ function downloadFile(filename, content, mime){
   URL.revokeObjectURL(url);
 }
 function exportYearCsv(){
-  const s = state();
-  const x = computeSummaryForYear(activeYear);
+  const s = state(), x = computeSummary();
   const lines = [];
   lines.push(['Section','Month','Description','Amount'].map(csvEscape).join(','));
   lines.push(['Summary','Year',activeYear,''].map(csvEscape).join(','));
+  lines.push(['Summary','Smart mode',x.smartMode,''].map(csvEscape).join(','));
+  lines.push(['Summary','Suggested savings rate',`${x.smartSaveRate}%`,''].map(csvEscape).join(','));
   lines.push(['Summary','Income so far','',x.income.toFixed(2)].map(csvEscape).join(','));
   lines.push(['Summary','Expenses so far','',x.expenses.toFixed(2)].map(csvEscape).join(','));
   lines.push(['Summary','Profit so far','',x.profit.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','Capital allowances','',x.capitalAllowances.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','Other taxable income','',x.otherIncome.toFixed(2)].map(csvEscape).join(','));
   lines.push(['Summary','Taxable profit','',x.taxableProfit.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','Assessable income','',x.assessableIncome.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','Income Tax','',x.incomeTax.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','USC','',x.usc.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','PRSI','',x.prsi.toFixed(2)].map(csvEscape).join(','));
   lines.push(['Summary','Estimated total tax','',x.totalTax.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','Saved already for tax','',x.savedTax.toFixed(2)].map(csvEscape).join(','));
   lines.push(['Summary','Suggested set-aside','',x.suggestedSetAside.toFixed(2)].map(csvEscape).join(','));
   lines.push(['Summary','Gap still to save','',x.gapToSave.toFixed(2)].map(csvEscape).join(','));
-  lines.push(['Summary','Set-aside target %','',x.setAsidePct].map(csvEscape).join(','));
+  lines.push(['Summary','Safe preliminary next year','',x.totalTax.toFixed(2)].map(csvEscape).join(','));
   s.months.forEach((month, idx) => {
     const monthName = MONTH_NAMES[idx];
     lines.push(['Month',monthName,'Income',(parseFloat(month.income)||0).toFixed(2)].map(csvEscape).join(','));
@@ -541,9 +562,10 @@ function exportYearCsv(){
 function exportYearJson(){
   const payload = {
     app: 'Tax App',
+    version: 'v5',
     year: activeYear,
     exported_at: new Date().toISOString(),
-    summary: computeSummaryForYear(activeYear),
+    summary: computeSummary(),
     data: state()
   };
   downloadFile(`tax-app-${activeYear}-backup.json`, JSON.stringify(payload, null, 2), 'application/json;charset=utf-8;');
@@ -554,7 +576,6 @@ document.addEventListener('click', (e) => {
   const monthIndex = Number(e.target.dataset.month);
   const expenseIndex = Number(e.target.dataset.expense);
   const s = state();
-
   if(action === 'toggle'){
     if(s.autoCollapsePast && isMonthComplete(s.months[monthIndex], monthIndex)){
       s.autoCollapsePast = false;
@@ -575,13 +596,11 @@ document.addEventListener('click', (e) => {
     rerender();
   }
 });
-
 document.addEventListener('input', (e) => {
   const action = e.target.dataset.action;
   const monthIndex = Number(e.target.dataset.month);
   const expenseIndex = Number(e.target.dataset.expense);
   const s = state();
-
   if(action === 'income'){
     s.months[monthIndex].income = e.target.value;
     renderSummary(); saveStore();
@@ -594,7 +613,6 @@ document.addEventListener('input', (e) => {
     s.months[monthIndex].expenses[expenseIndex].amount = e.target.value;
     renderSummary(); saveStore();
   }
-
   ['capitalAllowances','otherIncome','extraCredits','savedTax','setAsidePct'].forEach(id => {
     if(e.target.id === id){
       s[id] = e.target.value;
@@ -602,7 +620,6 @@ document.addEventListener('input', (e) => {
     }
   });
 });
-
 document.getElementById('collapseToggle').addEventListener('click', () => {
   state().autoCollapsePast = !state().autoCollapsePast;
   rerender();
@@ -643,15 +660,10 @@ window.addEventListener('beforeinstallprompt', e => {
   deferredPrompt = e;
   document.getElementById('installBtn').style.display = 'inline-flex';
 });
-
 const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-if(ios && !standalone){
-  document.getElementById('iosTip').classList.add('show');
-}
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('./sw.js').catch(()=>{});
-}
+if(ios && !standalone) document.getElementById('iosTip').classList.add('show');
+if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
 rerender();
 </script>
 </body>

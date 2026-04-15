@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#fff3f8",
   "theme_color": "#ec4899",
-  "description": "Multi-year tax tracker starting in 2025 with first-payment warning.",
+  "description": "Final Tax App with startup guidance, low-income mode, autumn warning, progress bar, exports, and multi-year records.",
   "icons": [
     {
       "src": "icon-192.svg",
