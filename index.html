@@ -70,6 +70,13 @@
       padding:12px 14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.15);border-radius:18px
     }
     .year-chip strong{font-size:1.05rem}
+    .warning{
+      margin-top:14px;padding:14px 16px;border-radius:20px;
+      background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.18)
+    }
+    .warning-title{font-weight:900;font-size:1rem;margin-bottom:6px}
+    .warning p{margin:0;color:rgba(255,255,255,.94);line-height:1.45}
     .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
     @media (max-width:520px){.stats{grid-template-columns:1fr}}
     .stat{padding:14px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.8))}
@@ -115,13 +122,13 @@
     <section class="hero">
       <div class="tag">💖 Tax App • Ireland</div>
       <h1>Money in. Costs out. Tax sorted.</h1>
-      <p>Now set up so you can work by year, save previous years, move into the next one, and export a year-end file whenever you need it.</p>
+      <p>Now starts from <strong>2025</strong> and includes a clear warning for the first big tax payment year.</p>
 
       <div class="yearbar">
         <div class="year-chip">
           <div>
             <div style="font-size:.8rem;opacity:.9">Current year</div>
-            <strong id="heroYear">2026</strong>
+            <strong id="heroYear">2025</strong>
           </div>
           <div style="font-size:.82rem;opacity:.9">Saved separately</div>
         </div>
@@ -129,6 +136,11 @@
           <label for="yearSelect" style="margin-top:0;color:#fff">Choose year</label>
           <select id="yearSelect" class="hero-select"></select>
         </div>
+      </div>
+
+      <div class="warning">
+        <div class="warning-title">First big payment warning</div>
+        <p id="doublePaymentText">If she started in 2025, the first major payment usually lands in 2026: balance of 2025 tax plus preliminary tax for 2026.</p>
       </div>
 
       <div class="actions">
@@ -146,8 +158,8 @@
       <div class="stack">
         <section class="card">
           <div class="pill">📅 Monthly tracker</div>
-          <h2 id="trackerHeading">Portrait month cards • 2026</h2>
-          <div class="muted">Each year is saved separately. Switch years at the top any time.</div>
+          <h2 id="trackerHeading">Portrait month cards • 2025</h2>
+          <div class="muted">Each year is saved separately. 2025 is now the starting year.</div>
 
           <div class="switch-line">
             <div>
@@ -164,7 +176,7 @@
       <div class="stack">
         <section class="card">
           <div class="pill">💸 Tax snapshot</div>
-          <h2 id="taxHeading">What to set aside • 2026</h2>
+          <h2 id="taxHeading">What to set aside • 2025</h2>
           <div class="inputs">
             <div>
               <label for="capitalAllowances">Capital allowances (€)</label>
@@ -199,18 +211,21 @@
             <div class="stat"><div class="label">Estimated total tax</div><div class="value pink" id="totalTax">€0</div></div>
             <div class="stat"><div class="label">Suggested set-aside</div><div class="value green" id="suggestedSetAside">€0</div></div>
             <div class="stat"><div class="label">Gap still to save</div><div class="value red" id="gapToSave">€0</div></div>
+            <div class="stat"><div class="label">Likely first big payment</div><div class="value orange" id="firstBigPayment">€0</div></div>
+            <div class="stat"><div class="label">Payment timing</div><div class="value pink" id="paymentTiming">2026</div></div>
           </div>
-          <div class="note">Use <strong>Export year CSV</strong> for a spreadsheet-style year-end summary, or <strong>Export backup</strong> for a full JSON file with all month detail for that year.</div>
+          <div class="note">For 2025 starters, the app now highlights that 2026 can bring a double hit: the 2025 balance plus preliminary 2026 tax.</div>
         </section>
       </div>
     </div>
 
-    <div class="footer">Tax App • Multi-year version with exports</div>
+    <div class="footer">Tax App • Multi-year version with first-payment warning</div>
   </div>
 
 <script>
-const STORAGE_KEY = 'tax-app-multi-year-v2';
+const STORAGE_KEY = 'tax-app-multi-year-v3';
 const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const START_YEAR = 2025;
 
 const SINGLE_PERSON_CREDIT = 2000;
 const EARNED_INCOME_CREDIT_MAX = 2000;
@@ -241,29 +256,25 @@ function blankYear(){
     }))
   };
 }
-function currentYear(){
-  return new Date().getFullYear();
-}
 function loadStore(){
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
     if(!raw){
-      const yr = currentYear();
-      return { currentYear: yr, years: { [yr]: blankYear() } };
+      return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
     }
     const parsed = JSON.parse(raw);
     if(!parsed.years || typeof parsed.years !== 'object'){
-      const yr = currentYear();
-      return { currentYear: yr, years: { [yr]: blankYear() } };
+      return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
     }
+    if(!parsed.years[String(START_YEAR)]) parsed.years[String(START_YEAR)] = blankYear();
+    if(!parsed.currentYear) parsed.currentYear = START_YEAR;
     return parsed;
   } catch(e){
-    const yr = currentYear();
-    return { currentYear: yr, years: { [yr]: blankYear() } };
+    return { currentYear: START_YEAR, years: { [START_YEAR]: blankYear() } };
   }
 }
 let store = loadStore();
-let activeYear = String(store.currentYear || currentYear());
+let activeYear = String(store.currentYear || START_YEAR);
 if(!store.years[activeYear]) store.years[activeYear] = blankYear();
 
 function state(){ return store.years[activeYear]; }
@@ -305,8 +316,8 @@ function escapeHtml(text){
     .replaceAll("'","&#39;");
 }
 
-function computeSummary(){
-  const s = state();
+function computeSummaryForYear(yearKey){
+  const s = store.years[yearKey] || blankYear();
   const income = s.months.reduce((sum, m) => sum + (parseFloat(m.income) || 0), 0);
   const expenses = s.months.reduce((sum, m) => sum + expenseTotal(m), 0);
   const profit = income - expenses;
@@ -317,7 +328,7 @@ function computeSummary(){
   const taxableProfit = Math.max(profit - capitalAllowances, 0);
   const assessableIncome = taxableProfit + otherIncome;
 
-  const incomeTax = calcIncomeTax(assessableIncome);
+  const incomeTax = calcIncomeTax(assessableIncome, parseFloat(s.extraCredits) || 0);
   const usc = calcUSC(assessableIncome, assessableIncome);
   const prsi = calcPRSI(assessableIncome);
   const totalTax = incomeTax + usc + prsi;
@@ -393,13 +404,13 @@ function renderMonths(){
   });
 }
 
-function calcIncomeTax(taxableIncome){
+function calcIncomeTax(taxableIncome, extraCredits){
   if(taxableIncome <= 0) return 0;
   const standardPart = Math.min(taxableIncome, STANDARD_RATE_BAND) * 0.20;
   const higherPart = Math.max(taxableIncome - STANDARD_RATE_BAND, 0) * 0.40;
   const grossTax = standardPart + higherPart;
   const earnedCredit = Math.min(EARNED_INCOME_CREDIT_MAX, taxableIncome);
-  const totalCredits = SINGLE_PERSON_CREDIT + earnedCredit + (parseFloat(state().extraCredits) || 0);
+  const totalCredits = SINGLE_PERSON_CREDIT + earnedCredit + (extraCredits || 0);
   return Math.max(grossTax - totalCredits, 0);
 }
 function calcUSC(income, nonPayeIncome){
@@ -427,7 +438,7 @@ function calcPRSI(reckonableIncome){
 
 function renderSummary(){
   const s = state();
-  const x = computeSummary();
+  const x = computeSummaryForYear(activeYear);
 
   document.getElementById('incomeTotal').textContent = euro(x.income);
   document.getElementById('expenseTotal').textContent = euro(x.expenses);
@@ -445,6 +456,30 @@ function renderSummary(){
   });
 
   document.getElementById('collapseToggle').classList.toggle('on', s.autoCollapsePast);
+
+  const yearNum = Number(activeYear);
+  let warning = 'This year looks like a normal running tax year.';
+  let firstBigPayment = x.totalTax;
+  let paymentTiming = String(yearNum + 1);
+
+  if(yearNum === 2025){
+    const nextYearKey = '2026';
+    const nextYearSummary = store.years[nextYearKey] ? computeSummaryForYear(nextYearKey) : null;
+    const preliminary2026 = nextYearSummary ? nextYearSummary.totalTax : x.totalTax;
+    firstBigPayment = x.totalTax + preliminary2026;
+    warning = `For a 2025 starter, the first big payment usually lands in 2026: about ${euro(x.totalTax)} for 2025 plus about ${euro(preliminary2026)} preliminary tax for 2026.`;
+    paymentTiming = 'Oct/Nov 2026';
+  } else if(yearNum === 2026){
+    const prior2025 = store.years['2025'] ? computeSummaryForYear('2025') : null;
+    const priorAmt = prior2025 ? prior2025.totalTax : 0;
+    firstBigPayment = priorAmt + x.totalTax;
+    warning = `2026 can feel like a double hit if 2025 was the first self-employed year: about ${euro(priorAmt)} for the 2025 balance plus about ${euro(x.totalTax)} preliminary tax for 2026.`;
+    paymentTiming = 'Oct/Nov 2026';
+  }
+
+  document.getElementById('doublePaymentText').textContent = warning;
+  document.getElementById('firstBigPayment').textContent = euro(firstBigPayment);
+  document.getElementById('paymentTiming').textContent = paymentTiming;
 }
 
 function rerender(){
@@ -471,7 +506,7 @@ function downloadFile(filename, content, mime){
 }
 function exportYearCsv(){
   const s = state();
-  const x = computeSummary();
+  const x = computeSummaryForYear(activeYear);
   const lines = [];
   lines.push(['Section','Month','Description','Amount'].map(csvEscape).join(','));
   lines.push(['Summary','Year',activeYear,''].map(csvEscape).join(','));
@@ -508,7 +543,7 @@ function exportYearJson(){
     app: 'Tax App',
     year: activeYear,
     exported_at: new Date().toISOString(),
-    summary: computeSummary(),
+    summary: computeSummaryForYear(activeYear),
     data: state()
   };
   downloadFile(`tax-app-${activeYear}-backup.json`, JSON.stringify(payload, null, 2), 'application/json;charset=utf-8;');
