@@ -1,0 +1,23 @@
+{
+  "name": "Kara Tax App",
+  "short_name": "Kara Tax",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff1f7",
+  "theme_color": "#ec4899",
+  "description": "Kara's self-employed Irish tax tracker with itemised monthly expenses.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
