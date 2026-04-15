@@ -1,11 +1,11 @@
 {
-  "name": "Kara's Tax App Ireland 2026",
-  "short_name": "Kara Tax",
+  "name": "Tax App Ireland",
+  "short_name": "Tax App",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#fff3f8",
   "theme_color": "#ec4899",
-  "description": "Mobile-friendly tax tracker with portrait months and tax calculator.",
+  "description": "Multi-year tax tracker with yearly switching and year-end exports.",
   "icons": [
     {
       "src": "icon-192.svg",
